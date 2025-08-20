@@ -1,1 +1,1 @@
-# Frontend: read + comment on blog posts
+# Frontend: create + edit blog posts

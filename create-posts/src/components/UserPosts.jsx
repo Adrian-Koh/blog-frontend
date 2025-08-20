@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPosts } from "./user-posts";
 
-export default function UserPosts() {
+const UserPosts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -14,17 +14,23 @@ export default function UserPosts() {
 
   return (
     <div className="container">
+      <h1>Posts</h1>
       <ul>
         {posts.map((post) => (
           <li>
             <ul>
-              <li>{post.title}</li>
-              <li>{post.text}</li>
-              <li>{post.addedTime}</li>
+              <li>Title: {post.title}</li>
+              <li>Text: {post.text}</li>
+              <li>
+                Upload time: {new Date(post.addedTime).toLocaleDateString()},{" "}
+                {new Date(post.addedTime).toLocaleTimeString()}
+              </li>
             </ul>
           </li>
         ))}
       </ul>
     </div>
   );
-}
+};
+
+export { UserPosts };
