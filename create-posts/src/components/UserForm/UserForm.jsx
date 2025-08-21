@@ -20,7 +20,9 @@ const UserForm = ({ action }) => {
       const token = parsed.token;
       localStorage.setItem("token", token);
     } else if (action === "signup") {
-      // check for error
+      // TODO: check for error
+      console.log("message received: " + parsed.message);
+      console.log("user received: " + JSON.stringify(parsed.user));
     }
   }
 
