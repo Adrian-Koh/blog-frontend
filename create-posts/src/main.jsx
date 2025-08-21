@@ -5,6 +5,7 @@ import App from "./components/App/App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { UserPosts } from "./components/UserPosts/UserPosts.jsx";
 import { UserForm } from "./components/UserForm/UserForm.jsx";
+import { PostForm } from "./components/PostForm/PostForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "posts", element: <UserPosts /> },
+      { path: "posts/new", element: <PostForm /> },
       { path: "login", element: <UserForm action="login" /> },
       { path: "signup", element: <UserForm action="signup" /> },
     ],

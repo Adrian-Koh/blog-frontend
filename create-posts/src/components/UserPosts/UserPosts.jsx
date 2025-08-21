@@ -25,6 +25,12 @@ const UserPosts = () => {
                 Upload time: {new Date(post.addedTime).toLocaleDateString()},{" "}
                 {new Date(post.addedTime).toLocaleTimeString()}
               </li>
+              {post.editedTime ? (
+                <li>
+                  Edited time: {new Date(post.editedTime).toLocaleDateString()},{" "}
+                  {new Date(post.editedTime).toLocaleTimeString()}
+                </li>
+              ) : null}
             </ul>
           </li>
         ))}

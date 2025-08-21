@@ -6,6 +6,7 @@ export default function App() {
     <div className="app">
       <nav>
         <Link to="posts">My posts</Link>
+        <Link to="posts/new">New post</Link>
         <Link to="login">Log In</Link>
         <Link to="signup">Sign Up</Link>
       </nav>
