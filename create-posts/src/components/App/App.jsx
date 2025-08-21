@@ -7,6 +7,7 @@ export default function App() {
       <nav>
         <Link to="posts">My posts</Link>
         <Link to="login">Login</Link>
+        <Link to="signup">Signup</Link>
       </nav>
       <Outlet></Outlet>
     </div>
