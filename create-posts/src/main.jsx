@@ -4,8 +4,7 @@ import "./index.css";
 import App from "./components/App/App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { UserPosts } from "./components/UserPosts/UserPosts.jsx";
-import { Login } from "./components/Login/Login.jsx";
-import { Signup } from "./components/Signup/Signup.jsx";
+import { UserForm } from "./components/UserForm/UserForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,8 +12,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "posts", element: <UserPosts /> },
-      { path: "login", element: <Login /> },
-      { path: "signup", element: <Signup /> },
+      { path: "login", element: <UserForm action="login" /> },
+      { path: "signup", element: <UserForm action="signup" /> },
     ],
   },
 ]);

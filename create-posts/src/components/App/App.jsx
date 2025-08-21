@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 export default function App() {
   return (
-    <div>
+    <div className="app">
       <nav>
         <Link to="posts">My posts</Link>
-        <Link to="login">Login</Link>
-        <Link to="signup">Signup</Link>
+        <Link to="login">Log In</Link>
+        <Link to="signup">Sign Up</Link>
       </nav>
       <Outlet></Outlet>
     </div>
