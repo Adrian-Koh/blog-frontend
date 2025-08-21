@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserForm = ({ action }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
+
+  const navigate = useNavigate();
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -19,10 +22,12 @@ const UserForm = ({ action }) => {
     if (action === "login") {
       const token = parsed.token;
       localStorage.setItem("token", token);
+      navigate("/posts");
     } else if (action === "signup") {
       // TODO: check for error
       console.log("message received: " + parsed.message);
       console.log("user received: " + JSON.stringify(parsed.user));
+      navigate("/login");
     }
   }
 
