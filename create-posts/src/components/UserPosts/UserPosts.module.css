@@ -1,0 +1,56 @@
+.posts,
+.posts li {
+  list-style-type: none;
+}
+
+.posts > li {
+  border: solid 3px black;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.post {
+  display: grid;
+  grid-template-columns: 400px 300px;
+  justify-content: center;
+}
+
+.postButtons {
+  grid-column: 2 / 3;
+  grid-row: 2 / 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.postTitle {
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.postText {
+  font-style: italic;
+  margin: 20px;
+  text-align: center;
+}
+
+.clockIcon {
+  font-size: 1.5rem;
+}
+
+.postTime {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  display: flex;
+  gap: 10px;
+}
+
+.editPost,
+.deletePost {
+  width: 40px;
+  height: auto;
+  font-size: 1.3rem;
+}
