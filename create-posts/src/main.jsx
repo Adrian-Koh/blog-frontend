@@ -13,7 +13,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "posts", element: <UserPosts /> },
-      { path: "posts/new", element: <PostForm /> },
+      { path: "posts/new", element: <PostForm isNewPost={true} /> },
+      { path: "posts/edit", element: <PostForm isNewPost={false} /> },
       { path: "login", element: <UserForm action="login" /> },
       { path: "signup", element: <UserForm action="signup" /> },
     ],

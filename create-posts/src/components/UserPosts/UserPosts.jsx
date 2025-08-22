@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getPosts } from "./user-posts";
+import { useNavigate } from "react-router-dom";
 
 const UserPosts = () => {
   const [posts, setPosts] = useState([]);
+  const navigator = useNavigate();
 
   useEffect(() => {
     let fetchPosts = async () => {
@@ -31,6 +33,23 @@ const UserPosts = () => {
                   {new Date(post.editedTime).toLocaleTimeString()}
                 </li>
               ) : null}
+              <li>
+                <button
+                  className="edit-post"
+                  onClick={() =>
+                    navigator("/posts/edit", {
+                      state: {
+                        post,
+                      },
+                    })
+                  }
+                >
+                  &#x270E;
+                </button>
+              </li>
+              <li>
+                <button className="delete-post">&#x274C;</button>
+              </li>
             </ul>
           </li>
         ))}
