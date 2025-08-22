@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPosts } from "./user-posts";
+import { getPosts, updatePublishStatus } from "./user-posts";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserPosts.module.css";
 
@@ -28,14 +28,17 @@ const UserPosts = () => {
                 <div className={styles.clockIcon}>&#x1F550;:</div>
                 <div>
                   {post.editedTime
-                    ? `${new Date(post.editedTime).toDateString()}, 
-                    ${new Date(post.editedTime).toLocaleTimeString([], {
-                      hour12: true,
-                    })}`
-                    : `${new Date(post.addedTime).toDateString()}, 
-                    ${new Date(post.addedTime).toLocaleTimeString([], {
-                      hour12: true,
-                    })}`}
+                    ? `${new Date(post.editedTime).toDateString()}, `
+                    : `${new Date(post.addedTime).toDateString()},`}
+                  <br />
+                  {post.editedTime
+                    ? `${new Date(post.editedTime).toLocaleTimeString([], {
+                        hour12: true,
+                      })}`
+                    : `${new Date(post.addedTime).toLocaleTimeString([], {
+                        hour12: true,
+                      })}`}
+                  <br />
                   {post.editedTime ? <i> (edited)</i> : null}
                 </div>
               </li>
@@ -52,8 +55,16 @@ const UserPosts = () => {
                 >
                   &#x270E;
                 </button>
+                <button
+                  onClick={() =>
+                    updatePublishStatus(post.id, !post.isPublished)
+                  }
+                >
+                  {post.isPublished ? "Unpublish" : "Publish"}
+                </button>
                 <button className={styles.deletePost}>&#x274C;</button>
               </li>
+              <li>Published: {post.isPublished ? "Yes" : "No"}</li>
             </ul>
           </li>
         ))}

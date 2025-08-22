@@ -1,6 +1,7 @@
 .posts,
 .posts li {
   list-style-type: none;
+  padding: 0;
 }
 
 .posts > li {
@@ -12,8 +13,9 @@
 
 .post {
   display: grid;
-  grid-template-columns: 400px 300px;
+  grid-template-columns: 400px 200px;
   justify-content: center;
+  padding: 0;
 }
 
 .postButtons {

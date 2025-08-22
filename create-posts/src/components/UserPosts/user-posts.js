@@ -12,3 +12,15 @@ export async function getPosts() {
 
   return posts;
 }
+
+export async function updatePublishStatus(postId, newPublishStatus) {
+  const tokenHeader = getTokenHeader();
+  const response = await fetch(`http://localhost:8000/posts/${postId}`, {
+    method: "PUT",
+    headers: { ...tokenHeader, "Content-Type": "application/json" },
+    body: JSON.stringify({ publish: newPublishStatus }),
+  });
+
+  const parsed = await response.json();
+  console.log("response: " + JSON.stringify(parsed));
+}
