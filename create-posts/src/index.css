@@ -21,7 +21,7 @@ a:visited {
 
 form {
   display: grid;
-  grid-template-columns: 200px 200px;
+  grid-template-columns: 100px 300px;
   grid-auto-rows: min-content;
   gap: 10px;
   width: 100%;

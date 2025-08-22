@@ -32,11 +32,21 @@ const PostForm = ({ isNewPost }) => {
   async function onSubmit(e) {
     e.preventDefault();
 
-    // TODO: edit if postId !== -1
+    let link;
+    let method;
+    if (postId === -1) {
+      // new post
+      link = "http://localhost:8000/posts/";
+      method = "POST";
+    } else {
+      // edit post
+      link = "http://localhost:8000/posts/" + postId;
+      method = "PUT";
+    }
 
     const tokenHeader = getTokenHeader();
-    const response = await fetch("http://localhost:8000/posts/", {
-      method: "POST",
+    const response = await fetch(link, {
+      method: method,
       headers: { ...tokenHeader, "Content-Type": "application/json" },
       body: JSON.stringify({ title, text, publish }),
     });
@@ -48,7 +58,7 @@ const PostForm = ({ isNewPost }) => {
 
   return (
     <div className="container">
-      <h1>New post</h1>
+      <h1>{isNewPost ? "New post" : "Edit post"}</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor="title">Title: </label>
         <input
@@ -64,14 +74,14 @@ const PostForm = ({ isNewPost }) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           cols="20"
-          rows="20"
+          rows="10"
         ></textarea>
         <label htmlFor="publish">Publish: </label>
         <input
           type="checkbox"
           id="publish"
           checked={publish}
-          onChange={(e) => setPublish(e.target.value)}
+          onChange={(e) => setPublish(e.target.checked)}
         />
         <input type="submit" />
       </form>
