@@ -37,21 +37,26 @@ const UserPosts = () => {
               <li className={styles.postTitle}>{post.title}</li>
               <li className={styles.postText}>{post.text}</li>
               <li className={styles.postTime}>
-                <div className={styles.clockIcon}>&#x1F550;:</div>
+                <div className={styles.clockIcon}>&#x1F550;</div>
                 <div>
                   {post.editedTime
-                    ? `${new Date(post.editedTime).toDateString()}, `
-                    : `${new Date(post.addedTime).toDateString()},`}
-                  <br />
-                  {post.editedTime
-                    ? `${new Date(post.editedTime).toLocaleTimeString([], {
+                    ? `${new Date(post.editedTime).toDateString()}, ${new Date(
+                        post.editedTime
+                      ).toLocaleTimeString([], {
                         hour12: true,
                       })}`
-                    : `${new Date(post.addedTime).toLocaleTimeString([], {
+                    : `${new Date(post.addedTime).toDateString()}, ${new Date(
+                        post.addedTime
+                      ).toLocaleTimeString([], {
                         hour12: true,
                       })}`}
-                  <br />
-                  {post.editedTime ? <i> (edited)</i> : null}
+
+                  {post.editedTime ? (
+                    <>
+                      <br />
+                      <i> (edited)</i>
+                    </>
+                  ) : null}
                 </div>
               </li>
               <li className={styles.postButtons}>
