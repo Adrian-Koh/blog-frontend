@@ -15,6 +15,18 @@ const UserPosts = () => {
     fetchPosts();
   }, []);
 
+  async function handlePublishClick(postId, newPublishStatus) {
+    const newPost = await updatePublishStatus(postId, newPublishStatus);
+    const newPosts = posts.map((post) => {
+      if (post.id === Number(postId)) {
+        return newPost;
+      } else {
+        return post;
+      }
+    });
+    setPosts(newPosts);
+  }
+
   return (
     <div className="container">
       <h1>Posts</h1>
@@ -56,15 +68,15 @@ const UserPosts = () => {
                   &#x270E;
                 </button>
                 <button
-                  onClick={() =>
-                    updatePublishStatus(post.id, !post.isPublished)
-                  }
+                  onClick={() => handlePublishClick(post.id, !post.isPublished)}
                 >
                   {post.isPublished ? "Unpublish" : "Publish"}
                 </button>
                 <button className={styles.deletePost}>&#x274C;</button>
               </li>
-              <li>Published: {post.isPublished ? "Yes" : "No"}</li>
+              <li className={styles.published}>
+                {post.isPublished ? "Published" : "Not published"}
+              </li>
             </ul>
           </li>
         ))}

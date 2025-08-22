@@ -23,4 +23,5 @@ export async function updatePublishStatus(postId, newPublishStatus) {
 
   const parsed = await response.json();
   console.log("response: " + JSON.stringify(parsed));
+  return parsed.post;
 }
