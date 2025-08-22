@@ -16,17 +16,33 @@ const Posts = () => {
   return (
     <div className={styles.container}>
       <h1>All Posts</h1>
-      {posts.map((post) => {
-        return (
-          <ul key={post.id}>
-            <li>{post.title}</li>
-            <li>{post.text}</li>
-            <li>{post.isPublished ? "Published" : "Not published"}</li>
-            <li>{post.addedTime}</li>
-            <li>{post.editedTime}</li>
-          </ul>
-        );
-      })}
+      <div className={styles.posts}>
+        {posts.map((post) => {
+          return (
+            <div className={styles.post} key={post.id}>
+              <div className={styles.postTitle}>{post.title}</div>
+              <div className={styles.postText}>{post.text}</div>
+              <div className={styles.postPublished}>
+                {post.isPublished ? "Published" : "Not published"}
+              </div>
+              <div className={styles.postAddedTime}>{`${new Date(
+                post.addedTime
+              ).toDateString()}, ${new Date(post.addedTime).toLocaleTimeString(
+                [],
+                { hour12: true }
+              )}`}</div>
+              {post.editedTime ? (
+                <div className={styles.postEditedTime}>
+                  {`${new Date(post.editedTime).toDateString()}, ${new Date(
+                    post.editedTime
+                  ).toLocaleTimeString([], { hour12: true })}`}{" "}
+                  edited
+                </div>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

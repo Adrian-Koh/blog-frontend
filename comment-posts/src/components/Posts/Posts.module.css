@@ -1,2 +1,43 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.post {
+  display: grid;
+  grid-template-columns: 400px 200px;
+}
+
+.postTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.postText {
+  grid-column: 1 / 2;
+}
+
+.postPublished {
+  grid-row: 3 / 4;
+}
+
+.postAddedTime,
+.postEditedTime {
+  grid-column: 2 / 3;
+}
+
+.postAddedTime {
+  grid-row: 1 / 2;
+}
+
+.postEditedTime {
+  grid-row: 2 / 3;
 }
