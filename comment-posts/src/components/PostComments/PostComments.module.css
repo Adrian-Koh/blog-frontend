@@ -1,0 +1,9 @@
+.comments {
+  border: solid 3px black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.comment {
+  border-bottom: solid 1px grey;
+}

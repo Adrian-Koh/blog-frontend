@@ -17,11 +17,21 @@ const PostComments = ({ postId }) => {
     <div>
       <div className={styles.comments}>
         {comments && comments.length > 0 ? (
-          <ul>
+          <div>
+            <h2>Comments</h2>
             {comments.map((comment) => {
-              return <li>{comment.text}</li>;
+              return (
+                <div className={styles.comment}>
+                  <p>{comment.text}</p>
+                  <p>{`${new Date(
+                    comment.addedTime
+                  ).toDateString()}, ${new Date(
+                    comment.addedTime
+                  ).toLocaleTimeString([], { hour12: true })}`}</p>
+                </div>
+              );
             })}
-          </ul>
+          </div>
         ) : (
           "No comments!"
         )}
