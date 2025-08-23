@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import styles from "./Posts.module.css";
-import { getAllPosts, getAllPostComments } from "./posts";
+import { getAllPosts } from "./posts";
+import { PostComments } from "../PostComments/PostComments";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
-  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -14,10 +14,7 @@ const Posts = () => {
     fetchPosts();
   }, []);
 
-  async function handleCommentsClick(postId) {
-    const fetchedComments = await getAllPostComments(postId);
-    setComments(fetchedComments);
-  }
+  function handleCommentsClick(postId) {}
 
   return (
     <div className={styles.container}>
@@ -48,15 +45,7 @@ const Posts = () => {
               <button onClick={() => handleCommentsClick(post.id)}>
                 Comments
               </button>
-              <div className={styles.comments}>
-                {comments && comments.length > 0 ? (
-                  <ul>
-                    {comments.map((comment) => {
-                      return <li>{comment.text}</li>;
-                    })}
-                  </ul>
-                ) : null}
-              </div>
+              <PostComments postId={post.id} />
             </div>
           );
         })}
