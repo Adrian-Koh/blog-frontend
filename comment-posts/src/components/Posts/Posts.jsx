@@ -45,7 +45,10 @@ const Posts = () => {
                     edited
                   </div>
                 ) : null}
-                <button onClick={() => handleCommentsClick(post.id)}>
+                <button
+                  className={styles.commentsBtn}
+                  onClick={() => handleCommentsClick(post.id)}
+                >
                   Comments
                 </button>
               </div>

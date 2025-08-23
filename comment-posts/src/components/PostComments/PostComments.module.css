@@ -1,9 +1,21 @@
 .comments {
-  border: solid 3px black;
+  border: solid 2px grey;
   border-radius: 5px;
   padding: 5px;
+  width: 200px;
+  text-align: center;
+  margin-top: 80px;
 }
 
 .comment {
   border-bottom: solid 1px grey;
+}
+
+.commentInputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.commentInputs button {
+  margin-left: auto;
 }

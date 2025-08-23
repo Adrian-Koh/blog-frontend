@@ -35,6 +35,10 @@ const PostComments = ({ postId }) => {
         ) : (
           "No comments!"
         )}
+        <div className={styles.commentInputs}>
+          <input type="text" placeholder="Add comment..." />
+          <button>Submit</button>
+        </div>
       </div>
     </div>
   );
