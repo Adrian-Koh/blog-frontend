@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { getAllPostComments } from "./post-comments";
+import { getAllPostComments, submitComment } from "./post-comments";
 import styles from "./PostComments.module.css";
 
 const PostComments = ({ postId = -1 }) => {
   const [comments, setComments] = useState([]);
+  const [commentInput, setCommentInput] = useState("");
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -12,6 +13,18 @@ const PostComments = ({ postId = -1 }) => {
     };
     fetchComments();
   }, [postId]);
+
+  function handleCommentSubmitClick() {
+    const postComment = async () => {
+      const createdComment = await submitComment(postId, commentInput);
+      const newComments = [...comments, createdComment];
+      console.log("newComments: " + JSON.stringify(newComments));
+
+      setComments(newComments);
+      setCommentInput("");
+    };
+    postComment();
+  }
 
   return (
     <div>
@@ -50,8 +63,15 @@ const PostComments = ({ postId = -1 }) => {
             "No comments!"
           )}
           <div className={styles.commentInputs}>
-            <input type="text" placeholder="Add comment..." />
-            <button>Submit</button>
+            <input
+              type="text"
+              placeholder="Add comment..."
+              value={commentInput}
+              onChange={(e) => {
+                setCommentInput(e.target.value);
+              }}
+            />
+            <button onClick={() => handleCommentSubmitClick()}>Submit</button>
           </div>
         </div>
       )}

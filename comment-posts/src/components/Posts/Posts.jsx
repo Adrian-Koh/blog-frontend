@@ -25,13 +25,10 @@ const Posts = () => {
         <h1>All Posts</h1>
         <div className={styles.posts}>
           {posts.map((post) => {
-            return (
+            return post.isPublished ? (
               <div className={styles.post} key={post.id}>
                 <div className={styles.postTitle}>{post.title}</div>
                 <div className={styles.postText}>{post.text}</div>
-                <div className={styles.postPublished}>
-                  {post.isPublished ? "Published" : "Not published"}
-                </div>
                 <div className={styles.postAddedTime}>{`${new Date(
                   post.addedTime
                 ).toDateString()}, ${new Date(
@@ -42,17 +39,17 @@ const Posts = () => {
                     {`${new Date(post.editedTime).toDateString()}, ${new Date(
                       post.editedTime
                     ).toLocaleTimeString([], { hour12: true })}`}{" "}
-                    edited
+                    (<i>edited</i>)
                   </div>
                 ) : null}
-                <button
-                  className={styles.commentsBtn}
+                <img
+                  src="/comment.svg"
+                  alt="comment"
+                  className={styles.commentsIcon}
                   onClick={() => handleCommentsClick(post.id)}
-                >
-                  Comments
-                </button>
+                />
               </div>
-            );
+            ) : null;
           })}
         </div>
       </div>

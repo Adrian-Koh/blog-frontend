@@ -52,6 +52,17 @@
   grid-row: 2 / 3;
 }
 
-.commentsBtn {
-  width: min-content;
+.commentsIcon {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  justify-self: flex-end;
+  width: 20px;
+  height: auto;
+  border: solid 2px black;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.commentsIcon:hover {
+  box-shadow: 2px 2px 2px 1px grey;
 }
