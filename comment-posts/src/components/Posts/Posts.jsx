@@ -62,7 +62,14 @@ const Posts = () => {
           })}
         </div>
       </div>
-      <PostComments postId={commentsPostId} />
+      <PostComments
+        postId={commentsPostId}
+        postTitle={
+          posts.length > 0 && commentsPostId > -1
+            ? posts.find((post) => post.id === commentsPostId).title
+            : ""
+        }
+      />
     </div>
   );
 };

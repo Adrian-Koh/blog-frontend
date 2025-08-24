@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllPostComments, submitComment } from "./post-comments";
 import styles from "./PostComments.module.css";
 
-const PostComments = ({ postId = -1 }) => {
+const PostComments = ({ postId = -1, postTitle }) => {
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState("");
 
@@ -32,7 +32,8 @@ const PostComments = ({ postId = -1 }) => {
         <div className={styles.comments}>
           {comments && comments.length > 0 ? (
             <div>
-              <h2>Comments</h2>
+              <h2>{postTitle}</h2>
+              <h3>Comments</h3>
               {comments.map((comment) => {
                 return (
                   <div className={styles.comment}>
@@ -69,6 +70,11 @@ const PostComments = ({ postId = -1 }) => {
               value={commentInput}
               onChange={(e) => {
                 setCommentInput(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleCommentSubmitClick();
+                }
               }}
             />
             <button onClick={() => handleCommentSubmitClick()}>Submit</button>
