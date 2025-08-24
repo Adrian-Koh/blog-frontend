@@ -1,0 +1,24 @@
+form {
+  display: grid;
+  grid-template-columns: 100px 300px;
+  grid-auto-rows: min-content;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+input[type="submit"] {
+  grid-column: 1 / 3;
+  width: min-content;
+  justify-self: flex-end;
+}
+
+label {
+  justify-self: flex-end;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

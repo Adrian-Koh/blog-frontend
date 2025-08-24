@@ -4,9 +4,11 @@ import styles from "./App.module.css";
 
 export default function App() {
   return (
-    <div className="app">
+    <div className={styles.app}>
       <nav className={styles.navBar}>
         <Link to="posts">Posts</Link>
+        <Link to="login">Log In</Link>
+        <Link to="signup">Sign Up</Link>
       </nav>
       <Outlet></Outlet>
     </div>

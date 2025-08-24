@@ -8,3 +8,8 @@
 .navBar a:visited {
   color: rgb(202, 139, 55);
 }
+
+.app {
+  width: 100%;
+  justify-content: center;
+}
