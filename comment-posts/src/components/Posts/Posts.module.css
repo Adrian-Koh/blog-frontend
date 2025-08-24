@@ -31,17 +31,24 @@
   font-weight: 600;
 }
 
-.postText {
-  grid-column: 1 / 2;
+.postAuthor {
+  display: flex;
+  align-items: center;
 }
 
-.postPublished {
-  grid-row: 3 / 4;
+.userIcon {
+  width: 30px;
+  height: auto;
+}
+
+.postText {
+  grid-column: 1 / 2;
 }
 
 .postAddedTime,
 .postEditedTime {
   grid-column: 2 / 3;
+  font-size: 0.75rem;
 }
 
 .postAddedTime {

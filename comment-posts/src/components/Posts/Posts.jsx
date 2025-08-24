@@ -28,18 +28,27 @@ const Posts = () => {
             return post.isPublished ? (
               <div className={styles.post} key={post.id}>
                 <div className={styles.postTitle}>{post.title}</div>
+                <div className={styles.postAuthor}>
+                  <img
+                    className={styles.userIcon}
+                    src="/account.svg"
+                    alt=" post author"
+                  ></img>
+                  {post.user.username}
+                </div>
                 <div className={styles.postText}>{post.text}</div>
-                <div className={styles.postAddedTime}>{`${new Date(
-                  post.addedTime
-                ).toDateString()}, ${new Date(
-                  post.addedTime
-                ).toLocaleTimeString([], { hour12: true })}`}</div>
+                <div className={styles.postAddedTime}>
+                  <i>posted </i>
+                  {`${new Date(post.addedTime).toDateString()}, ${new Date(
+                    post.addedTime
+                  ).toLocaleTimeString([], { hour12: true })}`}
+                </div>
                 {post.editedTime ? (
                   <div className={styles.postEditedTime}>
+                    <i>edited </i>
                     {`${new Date(post.editedTime).toDateString()}, ${new Date(
                       post.editedTime
-                    ).toLocaleTimeString([], { hour12: true })}`}{" "}
-                    (<i>edited</i>)
+                    ).toLocaleTimeString([], { hour12: true })}`}
                   </div>
                 ) : null}
                 <img
