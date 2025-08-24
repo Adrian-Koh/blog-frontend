@@ -1,11 +1,16 @@
-.navBar a {
+.navBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navLinks a {
   text-decoration: none;
   font-size: 1.5rem;
   margin: 20px;
 }
 
-.navBar a,
-.navBar a:visited {
+.navLinks a,
+.navLinks a:visited {
   color: rgb(202, 139, 55);
 }
 
