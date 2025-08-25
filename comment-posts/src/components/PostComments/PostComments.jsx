@@ -8,33 +8,40 @@ import styles from "./PostComments.module.css";
 import { useOutletContext } from "react-router-dom";
 
 const CommentInput = ({
-  commentInput,
-  setCommentInput,
+  mode,
+  commentInputText = "",
   handleCommentSubmitClick,
 }) => {
+  const [commentInput, setCommentInput] = useState("");
+
+  useEffect(() => {
+    setCommentInput(commentInputText);
+  }, [commentInputText]);
+
   return (
     <div className={styles.commentInputs}>
       <input
         type="text"
-        placeholder="Add comment..."
+        placeholder={mode === "new" ? "Add comment..." : "Edit comment..."}
         value={commentInput}
         onChange={(e) => {
           setCommentInput(e.target.value);
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            handleCommentSubmitClick();
+            handleCommentSubmitClick(commentInput);
           }
         }}
       />
-      <button onClick={() => handleCommentSubmitClick()}>Submit</button>
+      <button onClick={() => handleCommentSubmitClick(commentInput)}>
+        Submit
+      </button>
     </div>
   );
 };
 
 const PostComments = ({ postId = -1, postTitle }) => {
   const [comments, setComments] = useState([]);
-  const [commentInput, setCommentInput] = useState("");
   const [inputPosition, setInputPosition] = useState(-1);
 
   const { username } = useOutletContext();
@@ -48,18 +55,30 @@ const PostComments = ({ postId = -1, postTitle }) => {
   }, [postId]);
 
   function handleEditCommentClick(commentId) {
-    // todo: this should be for edit submit not edit click
-    //const newComment = await editComment(postId, commentId, commentInput)
+    setInputPosition(commentId);
   }
 
-  function handleCommentSubmitClick() {
+  function handleCommentSubmit(inputText) {
     const postComment = async () => {
-      const createdComment = await submitComment(postId, commentInput);
+      const createdComment = await submitComment(postId, inputText);
       const newComments = [...comments, createdComment];
       console.log("newComments: " + JSON.stringify(newComments));
 
       setComments(newComments);
-      setCommentInput("");
+    };
+    postComment();
+  }
+
+  function handleCommentEditSubmit(commentId, inputText) {
+    const postComment = async () => {
+      const editedComment = await editComment(postId, commentId, inputText);
+      let newComments = comments.filter((comment) => comment.id !== commentId);
+      newComments = [...newComments, editedComment];
+      newComments.sort((a, b) => b.id - a.id);
+      console.log("newComments: " + JSON.stringify(newComments));
+
+      setComments(newComments);
+      setInputPosition(-1);
     };
     postComment();
   }
@@ -102,6 +121,15 @@ const PostComments = ({ postId = -1, postTitle }) => {
                         onClick={() => handleEditCommentClick(comment.id)}
                       />
                     ) : null}
+                    {inputPosition === comment.id ? (
+                      <CommentInput
+                        mode="edit"
+                        commentInputText={comment.text}
+                        handleCommentSubmitClick={(inputText) => {
+                          handleCommentEditSubmit(comment.id, inputText);
+                        }}
+                      ></CommentInput>
+                    ) : null}
                   </div>
                 );
               })}
@@ -111,9 +139,10 @@ const PostComments = ({ postId = -1, postTitle }) => {
           )}
           {inputPosition === -1 ? (
             <CommentInput
-              commentInput={commentInput}
-              setCommentInput={setCommentInput}
-              handleCommentSubmitClick={handleCommentSubmitClick}
+              mode="new"
+              handleCommentSubmitClick={(inputText) =>
+                handleCommentSubmit(inputText)
+              }
             ></CommentInput>
           ) : null}
         </div>
