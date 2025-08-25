@@ -30,62 +30,70 @@ const UserPosts = () => {
   return (
     <div className="container">
       <h1>Posts</h1>
-      <ul className={styles.posts}>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <ul className={styles.post}>
-              <li className={styles.postTitle}>{post.title}</li>
-              <li className={styles.postText}>{post.text}</li>
-              <li className={styles.postTime}>
-                <div className={styles.clockIcon}>&#x1F550;</div>
-                <div>
-                  {post.editedTime
-                    ? `${new Date(post.editedTime).toDateString()}, ${new Date(
-                        post.editedTime
-                      ).toLocaleTimeString([], {
-                        hour12: true,
-                      })}`
-                    : `${new Date(post.addedTime).toDateString()}, ${new Date(
-                        post.addedTime
-                      ).toLocaleTimeString([], {
-                        hour12: true,
-                      })}`}
+      {posts && posts.length > 0 ? (
+        <ul className={styles.posts}>
+          {posts.map((post) => (
+            <li key={post.id}>
+              <ul className={styles.post}>
+                <li className={styles.postTitle}>{post.title}</li>
+                <li className={styles.postText}>{post.text}</li>
+                <li className={styles.postTime}>
+                  <div className={styles.clockIcon}>&#x1F550;</div>
+                  <div>
+                    {post.editedTime
+                      ? `${new Date(
+                          post.editedTime
+                        ).toDateString()}, ${new Date(
+                          post.editedTime
+                        ).toLocaleTimeString([], {
+                          hour12: true,
+                        })}`
+                      : `${new Date(post.addedTime).toDateString()}, ${new Date(
+                          post.addedTime
+                        ).toLocaleTimeString([], {
+                          hour12: true,
+                        })}`}
 
-                  {post.editedTime ? (
-                    <>
-                      <br />
-                      <i> (edited)</i>
-                    </>
-                  ) : null}
-                </div>
-              </li>
-              <li className={styles.postButtons}>
-                <button
-                  className={styles.editPost}
-                  onClick={() =>
-                    navigator("/posts/edit", {
-                      state: {
-                        post,
-                      },
-                    })
-                  }
-                >
-                  &#x270E;
-                </button>
-                <button
-                  onClick={() => handlePublishClick(post.id, !post.isPublished)}
-                >
-                  {post.isPublished ? "Unpublish" : "Publish"}
-                </button>
-                <button className={styles.deletePost}>&#x274C;</button>
-              </li>
-              <li className={styles.published}>
-                {post.isPublished ? "Published" : "Not published"}
-              </li>
-            </ul>
-          </li>
-        ))}
-      </ul>
+                    {post.editedTime ? (
+                      <>
+                        <br />
+                        <i> (edited)</i>
+                      </>
+                    ) : null}
+                  </div>
+                </li>
+                <li className={styles.postButtons}>
+                  <button
+                    className={styles.editPost}
+                    onClick={() =>
+                      navigator("/posts/edit", {
+                        state: {
+                          post,
+                        },
+                      })
+                    }
+                  >
+                    &#x270E;
+                  </button>
+                  <button
+                    onClick={() =>
+                      handlePublishClick(post.id, !post.isPublished)
+                    }
+                  >
+                    {post.isPublished ? "Unpublish" : "Publish"}
+                  </button>
+                  <button className={styles.deletePost}>&#x274C;</button>
+                </li>
+                <li className={styles.published}>
+                  {post.isPublished ? "Published" : "Not published"}
+                </li>
+              </ul>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No posts from you! Create a new post today.</p>
+      )}
     </div>
   );
 };
