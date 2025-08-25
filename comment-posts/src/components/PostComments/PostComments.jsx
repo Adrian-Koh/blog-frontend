@@ -34,7 +34,10 @@ const CommentInput = ({
           }
         }}
       />
-      <button onClick={() => handleCommentSubmitClick(commentInput)}>
+      <button
+        className={styles.submitBtn}
+        onClick={() => handleCommentSubmitClick(commentInput)}
+      >
         Submit
       </button>
     </div>

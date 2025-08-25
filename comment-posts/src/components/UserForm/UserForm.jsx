@@ -48,6 +48,7 @@ const UserForm = ({ action }) => {
       <form onSubmit={onSubmit}>
         <label htmlFor="username">Username: </label>
         <input
+          className={styles.inputField}
           type="text"
           id="username"
           value={username}
@@ -55,6 +56,7 @@ const UserForm = ({ action }) => {
         />
         <label htmlFor="password">Password: </label>
         <input
+          className={styles.inputField}
           type="password"
           id="password"
           value={password}
