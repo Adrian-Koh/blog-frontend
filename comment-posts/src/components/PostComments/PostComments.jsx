@@ -3,6 +3,7 @@ import {
   getAllPostComments,
   submitComment,
   editComment,
+  deleteComment,
 } from "./post-comments";
 import styles from "./PostComments.module.css";
 import { useOutletContext } from "react-router-dom";
@@ -59,18 +60,18 @@ const PostComments = ({ postId = -1, postTitle }) => {
   }
 
   function handleCommentSubmit(inputText) {
-    const postComment = async () => {
+    const submitCommentCb = async () => {
       const createdComment = await submitComment(postId, inputText);
       const newComments = [...comments, createdComment];
       console.log("newComments: " + JSON.stringify(newComments));
 
       setComments(newComments);
     };
-    postComment();
+    submitCommentCb();
   }
 
   function handleCommentEditSubmit(commentId, inputText) {
-    const postComment = async () => {
+    const editCommentCb = async () => {
       const editedComment = await editComment(postId, commentId, inputText);
       let newComments = comments.filter((comment) => comment.id !== commentId);
       newComments = [...newComments, editedComment];
@@ -80,7 +81,22 @@ const PostComments = ({ postId = -1, postTitle }) => {
       setComments(newComments);
       setInputPosition(-1);
     };
-    postComment();
+    editCommentCb();
+  }
+
+  function handleDeleteCommentClick(commentId) {
+    const deleteCommentCb = async () => {
+      const deletedComment = await deleteComment(postId, commentId);
+      const newComments = comments.filter(
+        (comment) => comment.id !== commentId
+      );
+      console.log("deletedComment: " + JSON.stringify(deletedComment));
+      console.log("newComments: " + JSON.stringify(newComments));
+
+      setComments(newComments);
+      setInputPosition(-1);
+    };
+    deleteCommentCb();
   }
 
   return (
@@ -114,12 +130,20 @@ const PostComments = ({ postId = -1, postTitle }) => {
                     </div>
                     <div className={styles.commentText}>{comment.text}</div>
                     {username && username === comment.user.username ? (
-                      <img
-                        className={styles.editCommentIcon}
-                        src="/comment-edit-outline.svg"
-                        alt="Edit comment"
-                        onClick={() => handleEditCommentClick(comment.id)}
-                      />
+                      <div className={styles.commentIcons}>
+                        <img
+                          className={styles.editCommentIcon}
+                          src="/comment-edit-outline.svg"
+                          alt="Edit comment"
+                          onClick={() => handleEditCommentClick(comment.id)}
+                        />
+                        <img
+                          className={styles.deleteCommentIcon}
+                          src="/delete.svg"
+                          alt="Delete comment"
+                          onClick={() => handleDeleteCommentClick(comment.id)}
+                        />
+                      </div>
                     ) : null}
                     {inputPosition === comment.id ? (
                       <CommentInput

@@ -54,3 +54,20 @@ export async function editComment(postId, commentId, newComment) {
 
   return await getCommentWithUser(postId, parsed.comment.id);
 }
+
+export async function deleteComment(postId, commentId) {
+  const tokenHeader = getTokenHeader();
+
+  const response = await fetch(
+    `http://localhost:8000/posts/${postId}/comments/${commentId}`,
+    {
+      method: "DELETE",
+      headers: { ...tokenHeader, "Content-Type": "application/json" },
+    }
+  );
+
+  const parsed = await response.json();
+  console.log(`deleted comment: ${JSON.stringify(parsed.comment)}`);
+
+  return parsed.comment;
+}
