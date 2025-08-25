@@ -31,10 +31,18 @@ export default function App() {
             alt="Logged in account"
           />
           {username ? username : "not logged in"}
+          {username ? (
+            <img
+              className={styles.logOutIcon}
+              src="/logout.svg"
+              alt="Log out"
+            />
+          ) : null}
         </div>
       </div>
-
-      <Outlet context={{ updateLoggedInUser, username }}></Outlet>
+      <div className={styles.container}>
+        <Outlet context={{ updateLoggedInUser, username }}></Outlet>
+      </div>
     </div>
   );
 }

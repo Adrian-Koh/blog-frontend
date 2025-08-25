@@ -1,5 +1,6 @@
 :root {
   --text-color: white;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 html {
@@ -22,6 +23,7 @@ html {
   font-size: 1.2rem;
   margin: 20px;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .navLinks a,
@@ -34,8 +36,21 @@ html {
   justify-content: center;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .loggedInUserIcon {
   width: 30px;
+  height: auto;
+  filter: invert(97%) sepia(100%) saturate(0%) hue-rotate(282deg)
+    brightness(105%) contrast(105%);
+}
+
+.logOutIcon {
+  width: 20px;
   height: auto;
   filter: invert(97%) sepia(100%) saturate(0%) hue-rotate(282deg)
     brightness(105%) contrast(105%);
@@ -46,4 +61,15 @@ html {
   align-items: center;
   justify-content: center;
   gap: 5px;
+}
+
+.logOutIcon {
+  border: solid 2px black;
+  padding: 3px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.logOutIcon:hover {
+  box-shadow: 2px 2px 5px 2px grey;
 }

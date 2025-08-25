@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
+import styles from "./UserForm.module.css";
 
 const UserForm = ({ action }) => {
   const [username, setUsername] = useState("");
@@ -42,11 +43,12 @@ const UserForm = ({ action }) => {
   }, [action]);
 
   return (
-    <div className="container">
+    <>
       <h1>{title}</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor="username">Username: </label>
         <input
+          className={styles.inputField}
           type="text"
           id="username"
           value={username}
@@ -54,6 +56,7 @@ const UserForm = ({ action }) => {
         />
         <label htmlFor="password">Password: </label>
         <input
+          className={styles.inputField}
           type="password"
           id="password"
           value={password}
@@ -61,7 +64,7 @@ const UserForm = ({ action }) => {
         />
         <input type="submit" />
       </form>
-    </div>
+    </>
   );
 };
 

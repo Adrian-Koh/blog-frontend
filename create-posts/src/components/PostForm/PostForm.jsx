@@ -57,7 +57,7 @@ const PostForm = ({ isNewPost }) => {
   }
 
   return (
-    <div className="container">
+    <>
       <h1>{isNewPost ? "New post" : "Edit post"}</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor="title">Title: </label>
@@ -85,7 +85,7 @@ const PostForm = ({ isNewPost }) => {
         />
         <input type="submit" />
       </form>
-    </div>
+    </>
   );
 };
 

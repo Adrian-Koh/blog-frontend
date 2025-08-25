@@ -28,7 +28,7 @@ const UserPosts = () => {
   }
 
   return (
-    <div className="container">
+    <>
       <h1>Posts</h1>
       {posts && posts.length > 0 ? (
         <ul className={styles.posts}>
@@ -94,7 +94,7 @@ const UserPosts = () => {
       ) : (
         <p>No posts from you! Create a new post today.</p>
       )}
-    </div>
+    </>
   );
 };
 
