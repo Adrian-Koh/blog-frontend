@@ -24,4 +24,8 @@ const getUsernameFromToken = () => {
   }
 };
 
-export { getTokenHeader, getUsernameFromToken };
+const removeToken = () => {
+  localStorage.removeItem("token");
+};
+
+export { getTokenHeader, getUsernameFromToken, removeToken };

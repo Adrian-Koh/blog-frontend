@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./App.module.css";
 import { useEffect, useState } from "react";
-import { getUsernameFromToken } from "../token/token";
+import { getUsernameFromToken, removeToken } from "../token/token";
 
 export default function App() {
   const [username, setUsername] = useState("");
@@ -15,6 +15,12 @@ export default function App() {
   const updateLoggedInUser = (uname) => {
     setUsername(uname);
   };
+
+  function handleLogOutClick() {
+    removeToken();
+    updateLoggedInUser("");
+  }
+
   return (
     <div className={styles.app}>
       <div className={styles.navBar}>
@@ -24,12 +30,22 @@ export default function App() {
           <Link to="signup">Sign Up</Link>
         </nav>
         <div className={styles.loggedIn}>
-          <img
-            className={styles.loggedInUserIcon}
-            src="/account-circle.svg"
-            alt="Logged in account"
-          />
-          {username ? username : "not logged in"}
+          {username ? (
+            <img
+              className={styles.loggedInUserIcon}
+              src="/account-circle.svg"
+              alt="Logged in account"
+            />
+          ) : null}
+          {username ? username : "Not logged in"}
+          {username ? (
+            <img
+              className={styles.logOutIcon}
+              src="/logout.svg"
+              alt="Log out"
+              onClick={handleLogOutClick}
+            />
+          ) : null}
         </div>
       </div>
 

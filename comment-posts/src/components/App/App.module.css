@@ -13,12 +13,16 @@ html {
 .navBar {
   display: flex;
   justify-content: space-between;
+  margin-top: 15px;
 }
 
 .navLinks a {
   text-decoration: none;
   font-size: 1.5rem;
   margin: 20px;
+  border: solid 2px rgb(18, 138, 146);
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .navLinks a,
@@ -38,11 +42,28 @@ html {
     brightness(91%) contrast(115%);
 }
 
+.logOutIcon {
+  width: 20px;
+  height: auto;
+  filter: invert(11%) sepia(93%) saturate(3176%) hue-rotate(235deg)
+    brightness(91%) contrast(115%);
+}
+
 .loggedIn {
-  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   color: var(--text-color);
+}
+
+.logOutIcon {
+  border: solid 2px var(--text-color);
+  padding: 3px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.logOutIcon:hover {
+  box-shadow: 2px 2px 5px 2px grey;
 }

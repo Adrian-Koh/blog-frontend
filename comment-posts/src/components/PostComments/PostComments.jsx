@@ -22,6 +22,7 @@ const CommentInput = ({
   return (
     <div className={styles.commentInputs}>
       <input
+        className={styles.commentInput}
         type="text"
         placeholder={mode === "new" ? "Add comment..." : "Edit comment..."}
         value={commentInput}
