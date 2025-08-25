@@ -1,14 +1,42 @@
 import { useEffect, useState } from "react";
-import { getAllPostComments, submitComment } from "./post-comments";
+import {
+  getAllPostComments,
+  submitComment,
+  editComment,
+} from "./post-comments";
 import styles from "./PostComments.module.css";
 import { useOutletContext } from "react-router-dom";
+
+const CommentInput = ({
+  commentInput,
+  setCommentInput,
+  handleCommentSubmitClick,
+}) => {
+  return (
+    <div className={styles.commentInputs}>
+      <input
+        type="text"
+        placeholder="Add comment..."
+        value={commentInput}
+        onChange={(e) => {
+          setCommentInput(e.target.value);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleCommentSubmitClick();
+          }
+        }}
+      />
+      <button onClick={() => handleCommentSubmitClick()}>Submit</button>
+    </div>
+  );
+};
 
 const PostComments = ({ postId = -1, postTitle }) => {
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState("");
+  const [inputPosition, setInputPosition] = useState(-1);
 
-  // TODO: need to know who the current user is so we can put the edit comment icon on their comments
-  // pass user down from App using context
   const { username } = useOutletContext();
 
   useEffect(() => {
@@ -19,7 +47,10 @@ const PostComments = ({ postId = -1, postTitle }) => {
     fetchComments();
   }, [postId]);
 
-  function handleEditCommentClick(commentId) {}
+  function handleEditCommentClick(commentId) {
+    // todo: this should be for edit submit not edit click
+    //const newComment = await editComment(postId, commentId, commentInput)
+  }
 
   function handleCommentSubmitClick() {
     const postComment = async () => {
@@ -78,22 +109,13 @@ const PostComments = ({ postId = -1, postTitle }) => {
           ) : (
             "No comments!"
           )}
-          <div className={styles.commentInputs}>
-            <input
-              type="text"
-              placeholder="Add comment..."
-              value={commentInput}
-              onChange={(e) => {
-                setCommentInput(e.target.value);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleCommentSubmitClick();
-                }
-              }}
-            />
-            <button onClick={() => handleCommentSubmitClick()}>Submit</button>
-          </div>
+          {inputPosition === -1 ? (
+            <CommentInput
+              commentInput={commentInput}
+              setCommentInput={setCommentInput}
+              handleCommentSubmitClick={handleCommentSubmitClick}
+            ></CommentInput>
+          ) : null}
         </div>
       )}
     </div>
