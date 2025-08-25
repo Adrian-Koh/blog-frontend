@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getTokenHeader } from "../token/token";
+import styles from "./PostForm.module.css";
 
 const PostForm = ({ isNewPost }) => {
   const [title, setTitle] = useState("");
@@ -62,6 +63,7 @@ const PostForm = ({ isNewPost }) => {
       <form onSubmit={onSubmit}>
         <label htmlFor="title">Title: </label>
         <input
+          className={styles.inputField}
           type="text"
           id="title"
           value={title}
@@ -69,6 +71,7 @@ const PostForm = ({ isNewPost }) => {
         />
         <label htmlFor="text">Text: </label>
         <textarea
+          className={styles.inputField}
           name="text"
           id="text"
           value={text}

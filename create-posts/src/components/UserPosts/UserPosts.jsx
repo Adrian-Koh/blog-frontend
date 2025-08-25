@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
 import { getPosts, updatePublishStatus } from "./user-posts";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import styles from "./UserPosts.module.css";
 
 const UserPosts = () => {
   const [posts, setPosts] = useState([]);
   const navigator = useNavigate();
+  const { username } = useOutletContext();
 
   useEffect(() => {
-    let fetchPosts = async () => {
-      let result = await getPosts();
-      setPosts(result);
-    };
-    fetchPosts();
-  }, []);
+    if (username) {
+      let fetchPosts = async () => {
+        let result = await getPosts();
+        setPosts(result);
+      };
+      fetchPosts();
+    } else {
+      setPosts([]);
+    }
+  }, [username]);
 
   async function handlePublishClick(postId, newPublishStatus) {
     const newPost = await updatePublishStatus(postId, newPublishStatus);
