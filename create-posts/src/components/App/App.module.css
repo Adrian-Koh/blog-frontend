@@ -1,0 +1,32 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navLinks a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin: 20px;
+}
+
+.navLinks a,
+.navLinks a:visited {
+  color: blueviolet;
+}
+
+.app {
+  width: 90vw;
+  justify-content: center;
+}
+
+.loggedInUserIcon {
+  width: 30px;
+  height: auto;
+}
+
+.loggedIn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}

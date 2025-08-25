@@ -1,3 +1,5 @@
+import { jwtDecode } from "jwt-decode";
+
 const getTokenHeader = () => {
   const token = localStorage.getItem("token");
   console.log("token obtained: " + token);
@@ -8,4 +10,17 @@ const getTokenHeader = () => {
   return { authorization: `Bearer ${token}` };
 };
 
-export { getTokenHeader };
+const getUsernameFromToken = () => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) return null;
+
+    const decoded = jwtDecode(token);
+    console.log("decoded token: " + JSON.stringify(decoded));
+
+    return decoded.user.username;
+  } catch {
+    return null;
+  }
+};
+export { getTokenHeader, getUsernameFromToken };

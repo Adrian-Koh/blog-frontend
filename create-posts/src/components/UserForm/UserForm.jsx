@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 const UserForm = ({ action }) => {
   const [username, setUsername] = useState("");
@@ -7,6 +7,7 @@ const UserForm = ({ action }) => {
   const [title, setTitle] = useState("");
 
   const navigate = useNavigate();
+  const { updateLoggedInUser } = useOutletContext();
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -20,6 +21,7 @@ const UserForm = ({ action }) => {
     const parsed = await response.json();
 
     if (action === "login") {
+      updateLoggedInUser(username);
       const token = parsed.token;
       localStorage.setItem("token", token);
       navigate("/posts");
