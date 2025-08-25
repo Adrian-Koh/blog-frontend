@@ -10,7 +10,7 @@ const getTokenHeader = () => {
   return { authorization: `Bearer ${token}` };
 };
 
-function getUsernameFromToken() {
+const getUsernameFromToken = () => {
   try {
     const token = localStorage.getItem("token");
     if (!token) return null;
@@ -22,6 +22,6 @@ function getUsernameFromToken() {
   } catch {
     return null;
   }
-}
+};
 
 export { getTokenHeader, getUsernameFromToken };
