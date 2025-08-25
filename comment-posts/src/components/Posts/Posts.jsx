@@ -36,21 +36,23 @@ const Posts = () => {
                   ></img>
                   {post.user.username}
                 </div>
-                <div className={styles.postText}>{post.text}</div>
-                <div className={styles.postAddedTime}>
+                <div className={styles.postText}>"{post.text}"</div>
+                <div className={styles.postTime}>
                   <i>posted </i>
                   {`${new Date(post.addedTime).toDateString()}, ${new Date(
                     post.addedTime
                   ).toLocaleTimeString([], { hour12: true })}`}
+                  {post.editedTime ? (
+                    <>
+                      <br></br>
+
+                      <i>edited </i>
+                      {`${new Date(post.editedTime).toDateString()}, ${new Date(
+                        post.editedTime
+                      ).toLocaleTimeString([], { hour12: true })}`}
+                    </>
+                  ) : null}
                 </div>
-                {post.editedTime ? (
-                  <div className={styles.postEditedTime}>
-                    <i>edited </i>
-                    {`${new Date(post.editedTime).toDateString()}, ${new Date(
-                      post.editedTime
-                    ).toLocaleTimeString([], { hour12: true })}`}
-                  </div>
-                ) : null}
                 <img
                   src="/comment.svg"
                   alt="comment"

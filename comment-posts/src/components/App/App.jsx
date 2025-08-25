@@ -24,7 +24,12 @@ export default function App() {
           <Link to="signup">Sign Up</Link>
         </nav>
         <div className={styles.loggedIn}>
-          {username ? "Logged in: " + username : "not logged in"}
+          <img
+            className={styles.loggedInUserIcon}
+            src="/account-circle.svg"
+            alt="Logged in account"
+          />
+          {username ? username : "not logged in"}
         </div>
       </div>
 
