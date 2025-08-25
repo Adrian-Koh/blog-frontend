@@ -10,11 +10,11 @@
 .comment {
   border-bottom: solid 1px grey;
   display: grid;
-  grid-template-columns: max-content fit-content;
+  grid-template-columns: max-content fit-content 30px;
 }
 
 .commentTime {
-  grid-column: 2 / 3;
+  grid-column: 2 / 4;
   grid-row: 1 / 2;
   justify-self: flex-end;
   text-align: right;
@@ -44,4 +44,20 @@
 
 .commentInputs button {
   margin-left: auto;
+}
+
+.editCommentIcon {
+  width: 20px;
+  height: auto;
+  margin-left: auto;
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  align-self: center;
+  border: solid 2px black;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.editCommentIcon:hover {
+  box-shadow: 2px 2px 3px 2px rgb(138, 136, 136);
 }

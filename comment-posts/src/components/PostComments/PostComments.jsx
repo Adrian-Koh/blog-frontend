@@ -6,6 +6,9 @@ const PostComments = ({ postId = -1, postTitle }) => {
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState("");
 
+  // TODO: need to know who the current user is so we can put the edit comment icon on their comments
+  // pass user down from App using context
+
   useEffect(() => {
     const fetchComments = async () => {
       const fetchedComments = await getAllPostComments(postId);
@@ -13,6 +16,8 @@ const PostComments = ({ postId = -1, postTitle }) => {
     };
     fetchComments();
   }, [postId]);
+
+  function handleEditCommentClick() {}
 
   function handleCommentSubmitClick() {
     const postComment = async () => {
@@ -56,6 +61,12 @@ const PostComments = ({ postId = -1, postTitle }) => {
                       {comment.user.username}:
                     </div>
                     <div className={styles.commentText}>{comment.text}</div>
+                    <img
+                      className={styles.editCommentIcon}
+                      src="/comment-edit-outline.svg"
+                      alt="Edit comment"
+                      onClick={() => handleEditCommentClick(comment.id)}
+                    />
                   </div>
                 );
               })}
