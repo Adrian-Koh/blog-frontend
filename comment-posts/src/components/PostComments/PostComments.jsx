@@ -74,7 +74,7 @@ const PostComments = ({ postId = -1, postTitle }) => {
       const editedComment = await editComment(postId, commentId, inputText);
       let newComments = comments.filter((comment) => comment.id !== commentId);
       newComments = [...newComments, editedComment];
-      newComments.sort((a, b) => b.id - a.id);
+      newComments.sort((a, b) => a.id - b.id);
       console.log("newComments: " + JSON.stringify(newComments));
 
       setComments(newComments);
