@@ -144,7 +144,14 @@ const PostComments = ({ postId = -1, postTitle }) => {
                 handleCommentSubmit(inputText)
               }
             ></CommentInput>
-          ) : null}
+          ) : (
+            <button
+              className={styles.newCommentBtn}
+              onClick={() => setInputPosition(-1)}
+            >
+              New comment
+            </button>
+          )}
         </div>
       )}
     </div>
