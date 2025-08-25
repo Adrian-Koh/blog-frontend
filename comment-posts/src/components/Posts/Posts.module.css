@@ -63,6 +63,7 @@
   border: solid 2px black;
   padding: 5px;
   border-radius: 10px;
+  margin-right: 10px;
 }
 
 .commentsIcon:hover {
