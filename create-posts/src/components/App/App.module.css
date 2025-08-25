@@ -1,3 +1,17 @@
+:root {
+  --text-color: white;
+}
+
+html {
+  background-image: linear-gradient(
+    to right,
+    rgba(70, 69, 69, 1) -1.7%,
+    rgba(46, 46, 46, 1) 85.6%
+  );
+  background-size: cover;
+  color: var(--text-color);
+}
+
 .navBar {
   display: flex;
   justify-content: space-between;
@@ -7,11 +21,12 @@
   text-decoration: none;
   font-size: 1.2rem;
   margin: 20px;
+  font-weight: 600;
 }
 
 .navLinks a,
 .navLinks a:visited {
-  color: blueviolet;
+  color: var(--text-color);
 }
 
 .app {
@@ -22,6 +37,8 @@
 .loggedInUserIcon {
   width: 30px;
   height: auto;
+  filter: invert(97%) sepia(100%) saturate(0%) hue-rotate(282deg)
+    brightness(105%) contrast(105%);
 }
 
 .loggedIn {
