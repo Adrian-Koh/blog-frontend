@@ -17,13 +17,18 @@
   gap: 20px;
 }
 
+h1 {
+  color: var(--text-color);
+}
+
 .post {
   display: grid;
   grid-template-columns: 300px 200px;
   gap: 10px;
-  border: solid 3px black;
+  border: solid 3px var(--text-color);
   border-radius: 5px;
   padding: 5px;
+  color: var(--text-color);
 }
 
 .postTitle {
@@ -39,6 +44,8 @@
 .userIcon {
   width: 30px;
   height: auto;
+  filter: invert(11%) sepia(93%) saturate(3176%) hue-rotate(235deg)
+    brightness(91%) contrast(115%);
 }
 
 .postText {
@@ -60,10 +67,12 @@
   justify-self: flex-end;
   width: 20px;
   height: auto;
-  border: solid 2px black;
+  border: solid 2px var(--text-color);
   padding: 5px;
   border-radius: 10px;
   margin-right: 10px;
+  filter: invert(11%) sepia(93%) saturate(3176%) hue-rotate(235deg)
+    brightness(91%) contrast(115%);
 }
 
 .commentsIcon:hover {
