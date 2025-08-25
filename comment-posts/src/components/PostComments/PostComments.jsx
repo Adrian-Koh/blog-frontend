@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllPostComments, submitComment } from "./post-comments";
 import styles from "./PostComments.module.css";
+import { useOutletContext } from "react-router-dom";
 
 const PostComments = ({ postId = -1, postTitle }) => {
   const [comments, setComments] = useState([]);
@@ -8,6 +9,7 @@ const PostComments = ({ postId = -1, postTitle }) => {
 
   // TODO: need to know who the current user is so we can put the edit comment icon on their comments
   // pass user down from App using context
+  const { username } = useOutletContext();
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -17,7 +19,7 @@ const PostComments = ({ postId = -1, postTitle }) => {
     fetchComments();
   }, [postId]);
 
-  function handleEditCommentClick() {}
+  function handleEditCommentClick(commentId) {}
 
   function handleCommentSubmitClick() {
     const postComment = async () => {
@@ -61,12 +63,14 @@ const PostComments = ({ postId = -1, postTitle }) => {
                       {comment.user.username}:
                     </div>
                     <div className={styles.commentText}>{comment.text}</div>
-                    <img
-                      className={styles.editCommentIcon}
-                      src="/comment-edit-outline.svg"
-                      alt="Edit comment"
-                      onClick={() => handleEditCommentClick(comment.id)}
-                    />
+                    {username && username === comment.user.username ? (
+                      <img
+                        className={styles.editCommentIcon}
+                        src="/comment-edit-outline.svg"
+                        alt="Edit comment"
+                        onClick={() => handleEditCommentClick(comment.id)}
+                      />
+                    ) : null}
                   </div>
                 );
               })}
